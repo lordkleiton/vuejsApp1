@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hm</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css"> -->
+    <!-- <script src="main.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>testando custom components</h1>
+        <p>{{ message }}</p>
+        <lista @evento-teste="testa" :array="message"></lista>
+        <p>{{ message }}</p>
+        <lista @evento-teste="testa" :array="message"></lista>
+
+        <p>{{ recebido }}</p>
+
+        <h1>testando componentes padrão</h1>
+        <input v-model="editado" placeholder="OwO">
+        <p>editado: {{ editado }}</p>
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">o valor atual é {{ checked ? 'verdadeiro' : 'falso' }}</label>
+    </div>
+
+    <script>
+        var lista = Vue.component('lista', {
+            props: ['array'],
+            template: `
+                <ul class="lista">
+                    <li 
+                        :title="'n-não clique em mim por favor'" 
+                        @mouseover="aumenta()" 
+                        @click="alerta('b-baka!!')" 
+                        v-for="(item, index) in array">
+                        Esse é meu index: {{ index }} e esse é meu conteúdo: {{ item }}, mas você passou o mouse em cima {{ contador }} vezes
+                    </li>
+                </ul>
+            `,
+            data: function(){
+                    return {
+                        contador: 0
+                    };
+                },
+            methods:{
+                alerta(msg){
+                    alert(msg);
+                },
+                log(msg){
+                    console.log(msg);
+                },
+                aumenta(){
+                    this.log(`mouse passou em cima ${++this.contador} vezes`);
+                    this.$emit('evento-teste', this.contador);
+                }
+            }
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'oie',
+                editado: '',
+                checked: true,
+                recebido: undefined
+            },
+            methods: {
+                testa(e){
+                    this.recebido = 'o ultimo numero recebido dos filhos foi: ' + e;
+                }
+            },
+            components: { 
+                lista
+            }
+        });
+    </script>
+</body>
+</html>
