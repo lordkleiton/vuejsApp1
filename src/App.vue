@@ -1,7 +1,6 @@
 <template>
 	<div id="app">
 		<img alt="Vue logo" src="./assets/logo.png">
-		<!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 		<lista @contador="editaTexto" :array="'oie'"></lista>
 		<lista @contador="editaTexto" :array="'oie'"></lista>
 		<lista @contador="editaTexto" :array="'oie'"></lista>
@@ -12,7 +11,6 @@
 </template>
 
 <script>
-	import HelloWorld from './components/HelloWorld.vue';
 	import lista from './components/lista.vue';
 	import campoTexto from './components/texto.vue';
 
@@ -27,7 +25,6 @@
 			}
 		},
 		components: {
-			HelloWorld,
 			lista,
 			campoTexto
 		},
