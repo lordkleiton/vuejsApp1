@@ -1,26 +1,32 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <lista @contador="editaTexto" :array="'oie'"></lista>
-    <p>{{ recebido }}</p>
+    <lista @contador="editaTexto" :array="'oie'"></lista>
+    <lista @contador="editaTexto" :array="'oie'"></lista>
+    <p>{{ recebido ? recebido : indefinido }}</p>
+    <campo-texto placeholder="5"></campo-texto>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import lista from './components/lista.vue'
+import HelloWorld from './components/HelloWorld.vue';
+import lista from './components/lista.vue';
+import campoTexto from './components/texto.vue';
 
 export default {
   name: 'app',
   data: () => {
       return {
-        recebido: undefined
+        recebido: undefined,
+        indefinido: 'você ainda não passou o mouse em cima de algum texto'
       }
   },
   components: {
     HelloWorld,
-    lista
+    lista,
+    campoTexto
   },
   methods: {
     editaTexto(e){
