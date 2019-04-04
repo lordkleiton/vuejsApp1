@@ -10,7 +10,7 @@ export default {
     },
     data: () => {
         return {
-            num: ''
+            num: undefined
         };
     },
     methods: {
@@ -19,7 +19,7 @@ export default {
         },
         fazCoisas(a){
             this.log(a);
-            this.$emit('valor', this.num);
+            this.$emit('valor', this.num, this.bits);
         }
     }
 };
