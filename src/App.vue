@@ -17,55 +17,55 @@
 	import campoTexto from './components/texto.vue';
 
 	export default {
-	name: 'app',
-	data: () => {
-		return {
-			recebido: undefined,
-			indefinido: 'você ainda não passou o mouse em cima de algum dos textos acima.',
-			campo: '',
-			msgCampo: 'você ainda não digitou na caixa de textos.'
-		}
-	},
-	components: {
-		HelloWorld,
-		lista,
-		campoTexto
-	},
-	methods: {
-		editaTexto(e){
-			this.recebido = 'o ultimo numero recebido dos filhos foi: ' + e;
+		name: 'app',
+		data: () => {
+			return {
+				recebido: undefined,
+				indefinido: 'você ainda não passou o mouse em cima de algum dos textos acima.',
+				campo: '',
+				msgCampo: 'você ainda não digitou na caixa de textos.'
+			}
 		},
-		recebeCampo(e){
-			this.campo = this.padding(e, 8);
+		components: {
+			HelloWorld,
+			lista,
+			campoTexto
 		},
-		dec2bin(a){
-			return (a === 0) ? 0 : (a % 2 + 10 * this.dec2bin(Math.floor(a / 2)));
-		},
-		padding(a, b){
-			if ((a >= 0) && (b > 0)){
-				let r = this.dec2bin(a).toString();
-			
-				if (r.length <= b){
-				let dif = b - r.length;
-				let aux = '';
+		methods: {
+			editaTexto(e){
+				this.recebido = 'o ultimo numero recebido dos filhos foi: ' + e;
+			},
+			recebeCampo(e){
+				this.campo = this.padding(e, 8);
+			},
+			dec2bin(a){
+				return (a === 0) ? 0 : (a % 2 + 10 * this.dec2bin(Math.floor(a / 2)));
+			},
+			padding(a, b){
+				if ((a >= 0) && (b > 0)){
+					let r = this.dec2bin(a).toString();
+				
+					if (r.length <= b){
+						let dif = b - r.length;
+						let aux = '';
 
-				while (aux.length < dif){
-					aux += '0';
-				}
+						while (aux.length < dif){
+							aux += '0';
+						}
 
-				return aux + r;
+						return aux + r;
+					}
+					else{
+						return `Fora do intervalo. min = 0, max = ${Math.pow(2, b) - 1}`;
+					}
 				}
 				else{
-				return `Fora do intervalo. min = 0, max = ${Math.pow(2, b) - 1}`;
+					return 'Argumentos incorretos.';
 				}
 			}
-			else{
-				return 'Argumentos incorretos.';
-			}
-		}
 		}
 	}
-	</script>
+</script>
 
 <style>
 	#app {
